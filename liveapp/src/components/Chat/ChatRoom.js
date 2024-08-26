@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import { useParams } from 'react-router-dom';
+import { socket } from '../../services/socket';
 
-const socket = io('http://localhost:4000'); // Connect to Socket.io server
-
-function ChatRoom({ match }) {
-  const { college, department, year } = match.params;
+function ChatRoom() {
+  const { college, department, year } = useParams();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    const room = `${college}-${department}-${year}`;
     socket.emit('joinRoom', { college, department, year });
 
     socket.on('message', (msg) => {
@@ -23,8 +23,10 @@ function ChatRoom({ match }) {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    socket.emit('chatMessage', message);
-    setMessage('');
+    if (message.trim()) {
+      socket.emit('chatMessage', message);
+      setMessage('');
+    }
   };
 
   return (
@@ -40,6 +42,7 @@ function ChatRoom({ match }) {
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          placeholder="Enter your message..."
         />
         <button type="submit">Send</button>
       </form>

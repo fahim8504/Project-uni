@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { register } from '../../services/firebase';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement registration logic here (e.g., Firebase Authentication)
-    console.log('Registering with', email, password);
-    history.push('/');
+    try {
+      await register(email, password);
+      history.push('/');
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (

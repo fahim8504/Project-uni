@@ -7,6 +7,7 @@ import ChatRoom from './components/Chat/ChatRoom';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Navbar from './components/Layout/Navbar';
+import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/college" component={College} />
-        <Route path="/department" component={Department} />
-        <Route path="/chatroom/:college/:department/:year" component={ChatRoom} />
+        <PrivateRoute path="/college" component={College} />
+        <PrivateRoute path="/department" component={Department} />
+        <PrivateRoute path="/chatroom/:college/:department/:year" component={ChatRoom} />
       </Switch>
     </div>
   );

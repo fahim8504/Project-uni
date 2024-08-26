@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { login } from '../../services/firebase';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement authentication here (e.g., Firebase Authentication)
-    console.log('Logging in with', email, password);
-    history.push('/');
+    try {
+      await login(email, password);
+      history.push('/');
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (

@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id"
+  apiKey: "AIzaSyB-qNdBkOl9jR3whwWVh2w_h41jynd0-Y0",
+  authDomain: "unify-918e7.firebaseapp.com",
+  projectId: "unify-918e7",
+  storageBucket: "unify-918e7.appspot.com",
+  messagingSenderId: "1074952331394",
+  appId: "1:1074952331394:web:fafcad5572e05ea9e9d49b",
+  measurementId: "G-TV141TBVWW"
 };
 
 const app = initializeApp(firebaseConfig);

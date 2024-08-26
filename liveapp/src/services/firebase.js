@@ -1,6 +1,5 @@
-// Example Firebase config
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "your-api-key",
@@ -13,3 +12,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+export const login = async (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const register = async (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password);
+};
